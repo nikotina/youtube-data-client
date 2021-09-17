@@ -1,0 +1,5 @@
+{
+    "telemetry.enableCrashReporter": false,
+    "workbench.iconTheme": "vs-minimal",
+    "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true
+}
