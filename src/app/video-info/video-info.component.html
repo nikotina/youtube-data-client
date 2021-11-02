@@ -1,22 +1,25 @@
+<p>
+   <a class='btn btn-default' (click)="onBack()">Back </a>
+ </p>
 <div class="container" id="main-container">
     <div class="row">
       <div *ngFor="let videoInfo of videoInfos" class="col-md-6 col-xl-3">
          <div class="card m-b-30">
             <div class="card-body row">
                <div class="col-6">
-                  <a href=""><img src="{{videoInfo?.thumbnailUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+                  <a href="{{outputPath + videoInfo?.videoId}}" target="_blank" rel="noopener noreferrer"><img src="{{videoInfo?.thumbnailUrl}}" alt="" class="img-fluid"></a>
                </div>
                <div class="col-6 card-title align-self-center mb-0">
-                  <h5>{{videoInfo?.title}}</h5>
-                  <p class="m-0">{{videoInfo?.videoDuration}}</p>
+                  <p class="m-0">{{videoInfo?.videoDuration | amDuration:'hh:mm:ss a'}}</p>
                </div>
             </div>
             <ul class="list-group list-group-flush">
-               <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{videoInfo?.channel_id}}</li>
-               <li class="list-group-item"><i class="fa fa-phone float-right"></i>{{videoInfo?.video_stat_id}}</li>
+               <li class="list-group-item">{{videoInfo?.title}}</li>
+               <li class="list-group-item">{{videoInfo?.channel_id}}</li>
+               <li class="list-group-item">{{videoInfo?.video_stat_id}}</li>
             </ul>
             <div class="card-body">
-               <p>{{videoInfo.description</p>
+               <p>{{videoInfo.description}}</p>
             </div>
          </div>
       </div>

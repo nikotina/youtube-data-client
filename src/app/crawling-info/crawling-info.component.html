@@ -1,0 +1,22 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Search Key</th>
+        <th scope="col">Created</th>
+        <th scope="col">Count</th>
+        <th scope="col">current_page_token</th>
+        <th scope="col">next_page_token</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let crawlingInfo of crawlingInfos">
+        <td><a [routerLink]="['/video-info', crawlingInfo?.searchKey]" routerLinkActive="active">{{crawlingInfo?.searchKey}}</a></td>
+        <td>{{crawlingInfo?.created}}</td>
+        <td>{{crawlingInfo?.totalCount}}</td>
+        <td>{{crawlingInfo?.currentPageToken}}</td>
+        <td>{{crawlingInfo?.nextPageToken}}</td>
+        <td><a (click)="onDeleteCrawlingInfo(crawlingInfo)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times">Delete</i></a></td>
+      </tr>
+    </tbody>
+  </table>
