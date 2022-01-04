@@ -12,6 +12,9 @@
                <div class="col-6 card-title align-self-center mb-0">
                   <p class="m-0">{{videoInfo?.videoDuration | amDuration:'hh:mm:ss a'}}</p>
                </div>
+               <div class="col-6 card-title align-self-center mb-0">
+                  <button type="button" class="btn btn-elegant" (click)="downloadYoutubeFile("{{outputPath + videoInfo?.videoId}},{{videoInfo?.title}}")"><i class="far fa-user pr-2" aria-hidden="true"></i>Download</button>
+               </div>
             </div>
             <ul class="list-group list-group-flush">
                <li class="list-group-item">{{videoInfo?.title}}</li>
