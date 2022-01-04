@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080/youtube'
+  apiBaseUrl: 'http://localhost:8080/youtube',
+  downloadLocation: '/films/'
 };
 
 /*
