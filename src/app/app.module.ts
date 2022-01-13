@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { YoutubeDataServiceService } from './youtube-data-service.service';
+import { YoutubeDataService } from './youtube-data-service';
 import { FormsModule } from '@angular/forms';
 import { VideoInfoComponent } from './video-info/video-info.component';
 import { VideoStatComponent } from './video-stat/video-stat.component';
@@ -32,7 +32,7 @@ import { MomentModule } from 'ngx-moment';
     MomentModule
   ],
   providers: [
-    YoutubeDataServiceService,
+    YoutubeDataService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: CustomHttpInterceptor,

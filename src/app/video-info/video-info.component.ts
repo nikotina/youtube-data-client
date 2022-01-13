@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { VideoInfo } from '../VideoInfo';
-import { YoutubeDataServiceService } from '../youtube-data-service.service';
+import { YoutubeDataService } from '../youtube-data-service';
 import { spawn } from 'child_process';
 
 @Component({
@@ -21,7 +21,7 @@ export class VideoInfoComponent implements OnInit {
   sub: Subscription = new Subscription();
 
   constructor(
-    private videoInfoService: YoutubeDataServiceService,
+    private videoInfoService: YoutubeDataService,
     private route: ActivatedRoute,
     private router: Router
   ) {}

@@ -10,32 +10,31 @@ import { CrawlingInfo } from './CrawlingInfo';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class YoutubeDataServiceService {
-
+export class YoutubeDataService {
   private apiServerUrl = environment.apiBaseUrl;
-  private videoInfos : VideoInfo[] = [];
+  private videoInfos: VideoInfo[] = [];
 
-  constructor(private http: HttpClient,private router: Router){}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  public crawlYoutube(keyword: string):void {
+  public crawlYoutube(keyword: string): void {
     this.http.get<string>(`${this.apiServerUrl}/crawl/${keyword}/1`).subscribe(
-      res => console.log('HTTP response', res),
-      err => console.log('HTTP Error', err),
+      (res) => console.log('HTTP response', res),
+      (err) => console.log('HTTP Error', err),
       () => {
         console.log('HTTP request completed.');
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
         this.router.navigate(['crawling-info']);
       }
-  ); 
+    );
   }
-  
+
   public getAllCrawlingInfos(): Observable<CrawlingInfo[]> {
     return this.http.get<CrawlingInfo[]>(`${this.apiServerUrl}/crawl`);
   }
-  
+
   public getAllVideoInfos(): Observable<VideoInfo[]> {
     return this.http.get<VideoInfo[]>(`${this.apiServerUrl}/info`);
   }
@@ -53,39 +52,59 @@ export class YoutubeDataServiceService {
   }
 
   public getVideoInfoBySearchKey(searchKey: string): Observable<VideoInfo[]> {
-    return this.http.get<VideoInfo[]>(`${this.apiServerUrl}/info/searchkey/${searchKey}`);
-  }  
+    return this.http.get<VideoInfo[]>(
+      `${this.apiServerUrl}/info/searchkey/${searchKey}`
+    );
+  }
 
-  public deleteCrawlingInfo(cL : CrawlingInfo) : void { 
+  public deleteCrawlingInfo(cL: CrawlingInfo): void {
     this.deleteCrawlingInfoById(cL.id);
   }
 
-  public deleteCrawlingInfoById(id : number): void  {
-     this.http.delete(`${this.apiServerUrl}/info/delete/${id}`)
-     .subscribe(
-      res => console.log('HTTP response', res),
-      err => console.log('HTTP Error', err),
+  public deleteCrawlingInfoById(id: number): void {
+    this.http.delete(`${this.apiServerUrl}/info/delete/${id}`).subscribe(
+      (res) => console.log('HTTP response', res),
+      (err) => console.log('HTTP Error', err),
       () => {
         console.log('HTTP request completed.');
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
         this.router.navigate(['crawling-info']);
       }
-     );
+    );
+  }
+
+  public downloadURL(url: string): void {
+    this.http.get(`${this.apiServerUrl}/download/${url}`).subscribe(
+      (res) => console.log('HTTP response', res),
+      (err) => console.log('HTTP Error', err),
+      () => {
+        console.log('HTTP request completed.');
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['crawling-info']);
+      }
+    );
   }
 
   public getVideoStatsById(videoStatsId: number): Observable<VideoStats> {
-    return this.http.get<VideoStats>(`${this.apiServerUrl}/stat/${videoStatsId}`);
+    return this.http.get<VideoStats>(
+      `${this.apiServerUrl}/stat/${videoStatsId}`
+    );
   }
 
   public getChannelById(channelId: number): Observable<ChannelInfo> {
     return this.http.get<ChannelInfo>(`${this.apiServerUrl}/stat/${channelId}`);
   }
 
-  // Error handling 
-  handleError(error: { error: { message: string; }; status: any; message: any; }) {
+  // Error handling
+  handleError(error: {
+    error: { message: string };
+    status: any;
+    message: any;
+  }) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {
@@ -94,6 +113,5 @@ export class YoutubeDataServiceService {
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
- }
-
+  }
 }

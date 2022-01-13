@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrawlingInfo } from './CrawlingInfo';
-import { YoutubeDataServiceService } from './youtube-data-service.service';
+import { YoutubeDataService } from './youtube-data-service';
 import { CrawlingInfoComponent } from './crawling-info/crawling-info.component';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   public searchkey : string = "";
 
   constructor(
-    private videoInfoService: YoutubeDataServiceService,
+    private videoInfoService: YoutubeDataService,
     private router: Router,
     public spinnerService: SpinnerService) {}
 
