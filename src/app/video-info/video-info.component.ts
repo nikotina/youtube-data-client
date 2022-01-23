@@ -7,6 +7,8 @@ import { catchError, retry } from 'rxjs/operators';
 import { VideoInfo } from '../VideoInfo';
 import { YoutubeDataService } from '../youtube-data-service';
 
+declare let EventSource: any;
+
 @Component({
   selector: 'app-video-info',
   templateUrl: './video-info.component.html',
@@ -23,7 +25,7 @@ export class VideoInfoComponent implements OnInit {
     private videoInfoService: YoutubeDataService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe((params) => {
@@ -43,6 +45,18 @@ export class VideoInfoComponent implements OnInit {
     this.router.navigate(['crawling-info']);
   }
 
+  connect(): void {
+    let source = new EventSource('http://localhost:8080/progress');
+    source.addEventListener('message', (message: { data: string; }) => {
+      let n: string;
+      n = JSON.parse(message.data);
+      
+    });
+    source.onmessage = (message: { data: string; })=>{
+      console.log(message.data);
+   }
+  }
+
   public getVideoInfoBySearchkey(keyword: string): void {
     this.videoInfoService.getVideoInfoBySearchKey(keyword).subscribe(
       (response: VideoInfo[]) => {
@@ -54,7 +68,11 @@ export class VideoInfoComponent implements OnInit {
       }
     );
   }
-  public downloadYoutubeFile(videoId: string, title: string): void {
-    
+  public downloadYoutubeFile(event: Event, videoInfo: VideoInfo): void {
+    console.log(videoInfo.videoId);
+    this.videoInfoService.downloadURL(videoInfo.videoId);
+    setTimeout(() => {
+      this.connect();
+    });
   }
 }

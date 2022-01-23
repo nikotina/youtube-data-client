@@ -74,8 +74,9 @@ export class YoutubeDataService {
     );
   }
 
-  public downloadURL(url: string): void {
-    this.http.get(`${this.apiServerUrl}/download/${url}`).subscribe(
+  public downloadURL(videoId: string): void {
+    console.log("download start");
+    this.http.get(`${this.apiServerUrl}/youtubedownload/${videoId}`).subscribe(
       (res) => console.log('HTTP response', res),
       (err) => console.log('HTTP Error', err),
       () => {
