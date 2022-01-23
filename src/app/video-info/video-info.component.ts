@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { VideoInfo } from '../VideoInfo';
+import { VideoInfo } from '../model/VideoInfo';
 import { YoutubeDataService } from '../youtube-data-service';
 
 declare let EventSource: any;
@@ -17,7 +19,7 @@ declare let EventSource: any;
 export class VideoInfoComponent implements OnInit {
   public videoInfos: VideoInfo[] = [];
   outputPath: string = 'https://youtu.be/';
-  filePath: string = '/films/'
+  filePath: string = '/films/';
   keyword: any;
   sub: Subscription = new Subscription();
 
@@ -25,7 +27,7 @@ export class VideoInfoComponent implements OnInit {
     private videoInfoService: YoutubeDataService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe((params) => {
@@ -45,16 +47,15 @@ export class VideoInfoComponent implements OnInit {
     this.router.navigate(['crawling-info']);
   }
 
-  connect(): void {
+  subscribeSSE(): void {
     let source = new EventSource('http://localhost:8080/progress');
-    source.addEventListener('message', (message: { data: string; }) => {
+    source.addEventListener('message', (message: { data: string }) => {
       let n: string;
       n = JSON.parse(message.data);
-      
     });
-    source.onmessage = (message: { data: string; })=>{
+    source.onmessage = (message: { data: string }) => {
       console.log(message.data);
-   }
+    };
   }
 
   public getVideoInfoBySearchkey(keyword: string): void {
@@ -72,7 +73,7 @@ export class VideoInfoComponent implements OnInit {
     console.log(videoInfo.videoId);
     this.videoInfoService.downloadURL(videoInfo.videoId);
     setTimeout(() => {
-      this.connect();
+      //this.subscribeSSE();
     });
   }
 }

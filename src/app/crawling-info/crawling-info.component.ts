@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrawlingInfo } from '../CrawlingInfo';
+import { CrawlingInfo } from '../model/CrawlingInfo';
 import { YoutubeDataService } from '../youtube-data-service';
 import { HttpErrorResponse } from '@angular/common/http';
 

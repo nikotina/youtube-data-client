@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +17,11 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpInterceptor } from './http-interceptor';
 import { MomentModule } from 'ngx-moment';
+
+const materialModules = [
+  MatButtonModule,
+  MatIconModule
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +37,12 @@ import { MomentModule } from 'ngx-moment';
     AppRoutingModule,
     HttpClientModule, 
     FormsModule,
-    MomentModule
+    MomentModule,
+    CommonModule,
+    materialModules
+  ],
+  exports: [
+    materialModules
   ],
   providers: [
     YoutubeDataService,

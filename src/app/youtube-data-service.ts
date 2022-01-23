@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { VideoInfo } from './VideoInfo';
-import { VideoStats } from './VideoStats';
-import { ChannelInfo } from './ChannelInfo';
+import { VideoInfo } from './model/VideoInfo';
+import { VideoStats } from './model/VideoStats';
+import { ChannelInfo } from './model/ChannelInfo';
 import { environment } from 'src/environments/environment';
-import { CrawlingInfo } from './CrawlingInfo';
+import { CrawlingInfo } from './model/CrawlingInfo';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -75,17 +75,21 @@ export class YoutubeDataService {
   }
 
   public downloadURL(videoId: string): void {
-    console.log("download start");
-    this.http.get(`${this.apiServerUrl}/youtubedownload/${videoId}`).subscribe(
-      (res) => console.log('HTTP response', res),
-      (err) => console.log('HTTP Error', err),
-      () => {
-        console.log('HTTP request completed.');
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['crawling-info']);
-      }
-    );
+    console.log('download start');
+    this.http
+      .get(`${this.apiServerUrl}/youtubedownload/${videoId}`, {
+        reportProgress: true,
+      })
+      .subscribe(
+        (res) => console.log('HTTP response', res),
+        (err) => console.log('HTTP Error', err),
+        () => {
+          console.log('HTTP request completed.');
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate(['crawling-info']);
+        }
+      );
   }
 
   public getVideoStatsById(videoStatsId: number): Observable<VideoStats> {
@@ -98,21 +102,4 @@ export class YoutubeDataService {
     return this.http.get<ChannelInfo>(`${this.apiServerUrl}/stat/${channelId}`);
   }
 
-  // Error handling
-  handleError(error: {
-    error: { message: string };
-    status: any;
-    message: any;
-  }) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
 }

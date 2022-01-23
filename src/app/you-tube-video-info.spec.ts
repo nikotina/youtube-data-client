@@ -1,4 +1,4 @@
-import { VideoInfo } from './VideoInfo';
+import { VideoInfo } from './model/VideoInfo';
 
 describe('VideoInfo', () => {
   it('should create an instance', () => {

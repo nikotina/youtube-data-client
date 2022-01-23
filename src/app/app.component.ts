@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrawlingInfo } from './CrawlingInfo';
+import { CrawlingInfo } from './model/CrawlingInfo';
 import { YoutubeDataService } from './youtube-data-service';
 import { CrawlingInfoComponent } from './crawling-info/crawling-info.component';
 import { NgForm } from '@angular/forms';
