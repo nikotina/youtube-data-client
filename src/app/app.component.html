@@ -1,15 +1,51 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" style="color:white;">Youtube Crawler</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
   </button>
-  <div class="collapse navbar-collapse" id="navbarColor02">
-     <form class="form-inline my-2 my-lg-0">
-        <input id="searchinput" type="search" [(ngModel)]="searchkey" (keydown.enter)="crawlYoutube(searchkey)" 
-         name="keyword" id="searchName" class="form-control mr-sm-2" placeholder="Search Youtube ...">
-     </form>
-  </div>
-</nav> 
-<mat-spinner [diameter]="150" *ngIf="spinnerService.visibility | async"></mat-spinner>
+  <a class="navbar-brand">Youtube Crawler</a>
+
+  <form class="search-form">
+    <mat-form-field>
+      <input
+        matInput
+        id="searchinput"
+        type="search"
+        [(ngModel)]="searchkey"
+        (keydown.enter)="crawlYoutube(searchkey)"
+        name="keyword"
+        id="searchName"
+        placeholder=""
+      />
+
+      <button
+        mat-button
+        (click)="crawlYoutube(searchkey)"
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarColor02"
+        aria-controls="navbarColor02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</mat-toolbar>
+<div class="center-screen">
+  <mat-progress-spinner
+    class="example-margin"
+    *ngIf="spinnerService.visibility | async"
+    color="green"
+    mode="indeterminate"
+    value="30 "
+  >
+  </mat-progress-spinner>
+</div>
 
 <router-outlet></router-outlet>

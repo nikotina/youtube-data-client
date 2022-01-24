@@ -1,33 +1,64 @@
-<p>
-    <button mat-fab (click)="onBack()">
-      <mat-icon>arrow_back_ios</mat-icon>
-    </button>
 
-</p>
+  <button 
+  mat-fab
+  class="navbar"
+   color="primary" 
+   (click)="onBack()">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+
 <div class="container" id="main-container">
-    <div class="row">
-      <div *ngFor="let videoInfo of videoInfos" class="col-md-6 col-xl-3">
-         <div class="card m-b-30">
-            <div class="card-body row">
-               <div class="col-6">
-                  <a href="{{outputPath + videoInfo?.videoId}}" target="_blank" rel="noopener noreferrer"><img src="{{videoInfo?.thumbnailUrl}}" alt="" class="img-fluid"></a>
-               </div>
-               <div class="col-6 card-title align-self-center mb-0">
-                  <p class="m-0">{{videoInfo?.videoDuration | amDuration:'hh:mm:ss a'}}</p>
-               </div>
-               <div class="col-6 card-title align-self-center mb-0">
-                  <button type="button" class="btn btn-elegant" (click)="downloadYoutubeFile($event,videoInfo)">Download</button>
-               </div>
-            </div>
-            <ul class="list-group list-group-flush">
-               <li class="list-group-item">{{videoInfo?.title}}</li>
-               <li class="list-group-item">{{videoInfo?.channel_id}}</li>
-               <li class="list-group-item">{{videoInfo?.video_stat_id}}</li>
-            </ul>
-            <div class="card-body">
-               <p>{{videoInfo.description}}</p>
-            </div>
-         </div>
-      </div>
+  <div class="row">
+    <div *ngFor="let videoInfo of videoInfos" class="col-md-4">
+      <mat-card>
+         <mat-card-title-group>
+         <a
+         href="{{ outputPath + videoInfo?.videoId }}"
+         target="_blank"
+         rel="noopener noreferrer"
+         ><img
+           mat-card-md-image
+           src="{{ videoInfo?.thumbnailUrl }}"
+           alt=""
+       /></a>
+          <mat-card-title class="example-title">{{ videoInfo?.title }}</mat-card-title>
+          <mat-card-subtitle>{{
+            videoInfo?.videoDuration | amDuration: "hh:mm:ss a"
+          }}</mat-card-subtitle>
+
+        </mat-card-title-group>
+        <mat-card-title-group>
+         <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ videoInfo?.publishedDate | amCalendar}}</li>
+            <li class="list-group-item">{{ videoInfo?.video_stat_id }}</li>
+          </ul>
+      </mat-card-title-group>
+      <mat-card-title-group>
+
+        <mat-card-content>
+          {{ videoInfo.description }}
+        </mat-card-content>
+      </mat-card-title-group>
+
+        <mat-card-actions>
+         <mat-progress-bar
+           class="navbar-toggler"
+           mode="indeterminate"
+         ></mat-progress-bar>
+
+         <button
+           mat-raised-button
+           color="primary"
+           (click)="downloadYoutubeFile($event, videoInfo)"
+           class="navbar-toggler"
+         >
+           Download
+         </button>
+       </mat-card-actions>
+        <mat-card-footer>
+
+        </mat-card-footer>
+      </mat-card>
     </div>
-    
+  </div>
+</div>

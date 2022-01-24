@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrawlingInfo } from '../model/CrawlingInfo';
-import { YoutubeDataService } from '../youtube-data-service';
+import { YoutubeDataService } from '../service/youtube-data-service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -10,12 +10,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CrawlingInfoComponent implements OnInit {
   public crawlingInfos: CrawlingInfo[] = [];
+  displayedColumns = [
+    'suche',
+    'erstellt',
+    'count',
+    'star'
+  ];
+  dataSource = this.crawlingInfos;
+  
   constructor(private videoInfoService: YoutubeDataService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
+    
     this.getCrawlingsInfos();
-    });
+  
   }
   public getCrawlingsInfos(): void {
     this.videoInfoService.getAllCrawlingInfos().subscribe(

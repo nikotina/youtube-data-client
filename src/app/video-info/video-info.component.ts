@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { VideoInfo } from '../model/VideoInfo';
-import { YoutubeDataService } from '../youtube-data-service';
+import { YoutubeDataService } from '../service/youtube-data-service';
 
 declare let EventSource: any;
 

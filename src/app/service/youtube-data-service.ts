@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { VideoInfo } from './model/VideoInfo';
-import { VideoStats } from './model/VideoStats';
-import { ChannelInfo } from './model/ChannelInfo';
+import { VideoInfo } from '../model/VideoInfo';
+import { VideoStats } from '../model/VideoStats';
+import { ChannelInfo } from '../model/ChannelInfo';
 import { environment } from 'src/environments/environment';
-import { CrawlingInfo } from './model/CrawlingInfo';
+import { CrawlingInfo } from '../model/CrawlingInfo';
 import { Router } from '@angular/router';
 
 @Injectable({

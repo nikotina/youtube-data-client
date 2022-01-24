@@ -1,4 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~material-icons/iconfont/material-icons.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "~material-icons/iconfont/material-icons.css";
+/*@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";*/
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.search-form {
+  padding-left: 5%;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.search-form {
+  min-width: 250px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.center-screen {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.example-title { 
+    font-size:medium;
+}

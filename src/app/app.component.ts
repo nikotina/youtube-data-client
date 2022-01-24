@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CrawlingInfo } from './model/CrawlingInfo';
-import { YoutubeDataService } from './youtube-data-service';
+import { YoutubeDataService } from './service/youtube-data-service';
 import { CrawlingInfoComponent } from './crawling-info/crawling-info.component';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SpinnerService } from './spinner-service.service';
+import { SpinnerService } from './service/spinner-service.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
