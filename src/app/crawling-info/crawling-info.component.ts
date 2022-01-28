@@ -11,10 +11,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CrawlingInfoComponent implements OnInit {
   public crawlingInfos: CrawlingInfo[] = [];
   displayedColumns = [
-    'suche',
-    'erstellt',
+    'search',
+    'created',
     'count',
-    'star'
+    'menu'
   ];
   
   

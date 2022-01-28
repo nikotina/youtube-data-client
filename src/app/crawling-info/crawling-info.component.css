@@ -9,12 +9,12 @@
     text-align: center;
   }
   
-  .mat-column-suche {
+  .mat-column-search {
     padding-left: 16px;
     font-size: 18px;
   }
   
-  .mat-column-erstellt {
+  .mat-column-created {
     font-size: 18px;
     font-style: italic;
   }

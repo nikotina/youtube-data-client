@@ -13,13 +13,13 @@
   
   <table mat-table [dataSource]="crawlingInfos" class="crawling-table mat-elevation-z8">
   
-    <ng-container matColumnDef="suche">
-      <th mat-header-cell *matHeaderCellDef> Suche </th>
+    <ng-container matColumnDef="search">
+      <th mat-header-cell *matHeaderCellDef> Search </th>
       <td mat-cell *matCellDef="let crawlingInfo"> <a [routerLink]="['/video-info', crawlingInfo?.searchKey]" routerLinkActive="active">{{crawlingInfo?.searchKey}}</a> </td>
     </ng-container>
 
-    <ng-container matColumnDef="erstellt">
-      <th mat-header-cell *matHeaderCellDef> erstellt </th>
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef> created </th>
       <td mat-cell *matCellDef="let crawlingInfo"> {{crawlingInfo?.created | amCalendar}} </td>
     </ng-container>
   
@@ -29,7 +29,7 @@
       <td mat-cell *matCellDef="let crawlingInfo"> {{crawlingInfo?.totalCount}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="star" stickyEnd>
+    <ng-container matColumnDef="menu" stickyEnd>
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let crawlingInfo">
         <button mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{id: crawlingInfo.id}">
