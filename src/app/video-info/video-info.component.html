@@ -1,16 +1,21 @@
 
   <button 
   mat-fab
-  class="navbar"
+  class="navbar sticky"
    color="primary" 
    (click)="onBack()">
     <mat-icon>arrow_back_ios</mat-icon>
   </button>
-
+  <mat-menu #appMenu="matMenu">
+    <ng-template matMenuContent>
+      <button mat-menu-item>Delete</button>
+      <button mat-menu-item>Help</button>
+    </ng-template>
+  </mat-menu>
 <div class="container" id="main-container">
   <div class="row">
     <div *ngFor="let videoInfo of videoInfos" class="col-md-4">
-      <mat-card>
+      <mat-card class="video-card">
          <mat-card-title-group>
          <a
          href="{{ outputPath + videoInfo?.videoId }}"

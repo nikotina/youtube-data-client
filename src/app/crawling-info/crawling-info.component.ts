@@ -16,7 +16,7 @@ export class CrawlingInfoComponent implements OnInit {
     'count',
     'star'
   ];
-  dataSource = this.crawlingInfos;
+  
   
   constructor(private videoInfoService: YoutubeDataService) { }
 
@@ -36,7 +36,8 @@ export class CrawlingInfoComponent implements OnInit {
       }
     );
   }
-  public onDeleteCrawlingInfo(cI: CrawlingInfo): void {
-    this.videoInfoService.deleteCrawlingInfo(cI);
+  public deleteCrawlingInfo(id: string): void {
+    console.log("delete id:" + id);
+    this.videoInfoService.deleteCrawlingInfo(parseInt(id));
   }
 }

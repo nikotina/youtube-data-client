@@ -17,4 +17,5 @@ channel_id :string;
 video_stat_id :string;        
 countryRestricted :string;   
 keyword :string;
+downloaded:boolean;
 }              
