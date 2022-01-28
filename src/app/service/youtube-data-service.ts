@@ -57,8 +57,8 @@ export class YoutubeDataService {
     );
   }
 
-  public deleteCrawlingInfo(cL: CrawlingInfo): void {
-    this.deleteCrawlingInfoById(cL.id);
+  public deleteCrawlingInfo(id: number): void {
+    this.deleteCrawlingInfoById(id);
   }
 
   public deleteCrawlingInfoById(id: number): void {
