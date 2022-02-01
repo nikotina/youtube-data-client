@@ -11,5 +11,5 @@
     cursor: pointer; /* Add a pointer on hover */
 }
 .mat-icon-button{
-    justify-self: end;
+    justify-self: right;
 }
