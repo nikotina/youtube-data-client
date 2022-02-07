@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     public spinnerService: SpinnerService) {}
 
   ngOnInit() {
-
+    this.router.navigate(['crawling-info']);
   }
 
   public crawlYoutube(input : string): void {
