@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://localhost:8080/youtube',
+  apiBaseUrl: 'http://ubuntu:8080/youtube',
   downloadLocation: '/films/'
 };
