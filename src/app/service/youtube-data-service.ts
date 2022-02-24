@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { VideoInfo } from '../model/VideoInfo';
 import { VideoStats } from '../model/VideoStats';
 import { ChannelInfo } from '../model/ChannelInfo';
 import { environment } from 'src/environments/environment';
-import { CrawlingInfo } from '../model/CrawlingInfo';
+import { SearchInfo } from '../model/SearchInfo';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,7 +17,7 @@ export class YoutubeDataService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  public crawlYoutube(keyword: string): void {
+  public searchYoutube(keyword: string): void {
     this.http.get<string>(`${this.apiServerUrl}/crawl/${keyword}/1`).subscribe(
       (res) => console.log('HTTP response', res),
       (err) => console.log('HTTP Error', err),
@@ -26,13 +25,13 @@ export class YoutubeDataService {
         console.log('HTTP request completed.');
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['crawling-info']);
+        this.router.navigate(['search-info']);
       }
     );
   }
 
-  public getAllCrawlingInfos(): Observable<CrawlingInfo[]> {
-    return this.http.get<CrawlingInfo[]>(`${this.apiServerUrl}/crawl`);
+  public getAllSearchInfos(): Observable<SearchInfo[]> {
+    return this.http.get<SearchInfo[]>(`${this.apiServerUrl}/crawl`);
   }
 
   public getAllVideoInfos(): Observable<VideoInfo[]> {
@@ -57,11 +56,11 @@ export class YoutubeDataService {
     );
   }
 
-  public deleteCrawlingInfo(id: number): void {
-    this.deleteCrawlingInfoById(id);
+  public deleteSearchInfo(id: number): void {
+    this.deleteSearchInfoById(id);
   }
 
-  public deleteCrawlingInfoById(id: number): void {
+  public deleteSearchInfoById(id: number): void {
     this.http.delete(`${this.apiServerUrl}/info/delete/${id}`).subscribe(
       (res) => console.log('HTTP response', res),
       (err) => console.log('HTTP Error', err),
@@ -69,7 +68,7 @@ export class YoutubeDataService {
         console.log('HTTP request completed.');
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['crawling-info']);
+        this.router.navigate(['search-info']);
       }
     );
   }
@@ -87,7 +86,7 @@ export class YoutubeDataService {
           console.log('HTTP request completed.');
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
-          this.router.navigate(['crawling-info']);
+          this.router.navigate(['search-info']);
         }
       );
   }

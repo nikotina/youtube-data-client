@@ -44,7 +44,7 @@ export class VideoInfoComponent implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(['crawling-info']);
+    this.router.navigate(['search-info']);
   }
 
   subscribeSSE(): void {

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrawlingInfoComponent } from './crawling-info.component';
+import { searchInfoComponent } from './search-info.component';
 
-describe('CrawlingInfoComponent', () => {
-  let component: CrawlingInfoComponent;
-  let fixture: ComponentFixture<CrawlingInfoComponent>;
+describe('searchInfoComponent', () => {
+  let component: searchInfoComponent;
+  let fixture: ComponentFixture<searchInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrawlingInfoComponent ]
+      declarations: [ searchInfoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrawlingInfoComponent);
+    fixture = TestBed.createComponent(searchInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

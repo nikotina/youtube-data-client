@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrawlingInfo } from './model/CrawlingInfo';
 import { YoutubeDataService } from './service/youtube-data-service';
-import { CrawlingInfoComponent } from './crawling-info/crawling-info.component';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SpinnerService } from './service/spinner-service.service';
 @Component({
@@ -19,12 +16,12 @@ export class AppComponent implements OnInit {
     public spinnerService: SpinnerService) {}
 
   ngOnInit() {
-    this.router.navigate(['crawling-info']);
+    this.router.navigate(['search-info']);
   }
 
   public crawlYoutube(input : string): void {
     console.log("You entered: ", input);
-    this.videoInfoService.crawlYoutube(input);
+    this.videoInfoService.searchYoutube(input);
     this.searchkey = ""
   }
 

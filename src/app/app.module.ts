@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { VideoInfoComponent } from './video-info/video-info.component';
 import { VideoStatComponent } from './video-stat/video-stat.component';
 import { VideoChannelComponent } from './video-channel/video-channel.component';
-import { CrawlingInfoComponent } from './crawling-info/crawling-info.component';
+import { searchInfoComponent } from './search-info/search-info.component';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpInterceptor } from './util/http-interceptor';
@@ -25,7 +25,7 @@ import { MomentModule } from 'ngx-moment';
     VideoInfoComponent,
     VideoStatComponent,
     VideoChannelComponent,
-    CrawlingInfoComponent,
+    searchInfoComponent,
   ],
   imports: [
     CustomMaterialModule,

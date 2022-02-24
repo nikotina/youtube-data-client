@@ -1,4 +1,4 @@
-export interface CrawlingInfo {
+export interface SearchInfo {
   id: number;
   created: Date;
   createdBy: string;
